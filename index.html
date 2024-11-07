@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 어쩌구 키오스크</title>
+    <link rel="stylesheet" href="index_styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 화면 -->
+        <div id="mainScreen" class="screen">
+            <div class="header">
+                <h1>주문 키오스크</h1>
+            </div>
+            <div class="buttons">
+                <div id="dineInButton" class="button dine-in">
+                    <p>매장 식사</p>
+                </div>
+                <div id="takeOutButton" class="button take-out">
+                    <p>포장 주문</p>
+                </div>
+            </div>
+            <div class="footer">
+                <p>QR코드를 핸드폰으로 촬영하면 모바일 주문가능 →</p>
+            </div>
+        </div>
+
+        <!-- 매장 식사 화면 -->
+        <div id="dineInScreen" class="screen hidden">
+            <div class="header">
+                <h1>매장 식사 화면</h1>
+            </div>
+            <!-- 추가적인 내용과 버튼을 추가할 수 있습니다 -->
+            <button onclick="showMainScreen()">뒤로 가기</button>
+        </div>
+
+        <!-- 포장 주문 화면 -->
+        <div id="takeOutScreen" class="screen hidden">
+            <div class="header">
+                <h1>포장 주문 화면</h1>
+            </div>
+            <!-- 추가적인 내용과 버튼을 추가할 수 있습니다 -->
+            <button onclick="showMainScreen()">뒤로 가기</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
