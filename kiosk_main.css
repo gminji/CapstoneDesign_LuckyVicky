@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'Universal';
+    src: url('fonts/KoddiUDOnGothic-Bold.woff2') format('woff2'),
+         url('fonts/KoddiUDOnGothic-Bold.woff') format('woff'),
+         url('fonts/KoddiUDOnGothic-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Universal', Arial, sans-serif;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#title {
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: clamp(18px, 2vw, 24px); /* 반응형 폰트 크기 */
+    font-weight: bold;
+    overflow-wrap: break-word; /* 텍스트 줄바꿈 */
+}
+
+#options {
+    display: flex;
+    width: 100%;
+    height: 60%;
+    flex: 1;
+}
+
+.option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: clamp(16px, 2vw, 24px); /* 반응형 폰트 크기 */
+    font-weight: bold;
+    color: black;
+    overflow-wrap: break-word; /* 텍스트 줄바꿈 */
+    text-align: center;
+    padding: 10px;
+    cursor: pointer; /* 마우스 커서 추가 */
+}
+
+.option.yellow {
+    background-color: #FFD700;
+}
+
+.option.red {
+    background-color: #FF6347;
+}
+
+.icon-container {
+    display: flex;
+    gap: 10px; /* 아이콘 사이 간격 */
+    margin-top: 10px; /* 텍스트와 아이콘 사이 간격 */
+}
+
+.icon-container img {
+    width: 50px; /* 이미지 크기 조정 */
+    height: auto;
+}
+
+#qr-section {
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: clamp(14px, 1.5vw, 18px); /* 반응형 폰트 크기 */
+    overflow-wrap: break-word;
+}
+
+#qr-section img {
+    width: 80px;
+    margin-top: 10px;
+}
