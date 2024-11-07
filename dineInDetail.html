@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매장 식사 상세 화면</title>
+    <link rel="stylesheet" href="dineInDetail.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 상단 헤더 및 돌아가기 버튼 -->
+        <div class="header">
+            <button onclick="goBack()" class="back-button">← 돌아가기</button>
+            <h2>인공지능 tts 자막 변환</h2>
+        </div>
+        
+        <!-- 왼쪽 아이콘과 그리드 -->
+        <div class="content">
+            <div class="left-icons">
+                <div class="icon-circle"></div>
+                <div class="icon-circle"></div>
+                <div class="icon-circle"></div>
+            </div>
+            <div class="grid">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+        </div>
+        
+        <!-- 하단 컨트롤 -->
+        <div class="controls">
+            <button class="prev-button">⏪</button>
+            <button class="next-button">⏩</button>
+        </div>
+        
+        <!-- 미니 장바구니 -->
+        <div class="mini-cart">
+            <p>미니 장바구니</p>
+            <ul>
+                <li>햄버거 라지 세트</li>
+                <li>ㅇㄹㅁㄴ</li>
+            </ul>
+            <div class="zoom-icon">🔍</div>
+        </div>
+        
+        <!-- 하단 아이콘 및 결제 버튼 -->
+        <div class="actions">
+            <div class="icon-group">
+                <span class="icon head">🧠</span>
+                <span class="icon bell">🔔</span>
+            </div>
+            <button class="pay-button">결제</button>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();  // 이전 페이지로 돌아가기
+        }
+    </script>
+</body>
+</html>
