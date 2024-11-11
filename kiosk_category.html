@@ -56,6 +56,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 5px;
+            cursor: pointer; /* 마우스 포인터 변경 */
         }
         .grid-item img {
             width: 100%;
@@ -76,6 +77,38 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        /* 모달 스타일 */
+        .modal {
+            display: none; /* 기본적으로 숨김 */
+            position: fixed;
+            z-index: 1; /* 최상위 레이어 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* 스크롤 가능 */
+            background-color: rgb(0,0,0); /* 배경색 */
+            background-color: rgba(0,0,0,0.4); /* 투명도 */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 중앙 정렬 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* 너비 */
+        }
+        .close {
+            color: #aaa;
+            float: right; /* 오른쪽 정렬 */
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -92,25 +125,94 @@
         </div>
 
         <div class="grid">
-            <div class="grid-item"><img src="image1.jpg" alt="이미지 1"></div>
-            <div class="grid-item"><img src="image2.jpg" alt="이미지 2"></div>
-            <div class="grid-item"><img src="image3.jpg" alt="이미지 3"></div>
-            <div class="grid-item"><img src="image4.jpg" alt="이미지 4"></div>
-            <div class="grid-item"><img src="image5.jpg" alt="이미지 5"></div>
-            <div class="grid-item"><img src="image6.jpg" alt="이미지 6"></div>
+            <div class="grid-item" onclick="addToCart('불고기 버거')">
+                <img src="image1.jpg" alt="불고기 버거">
+            </div>
+            <div class="grid-item" onclick="addToCart('치킨 버거')">
+                <img src="image2.jpg" alt="치킨 버거">
+            </div>
+            <div class="grid-item" onclick="addToCart('소고기 버거')">
+                <img src="image3.jpg" alt="소고기 버거">
+            </div>
+            <div class="grid-item" onclick="addToCart('감자튀김')">
+                <img src="image4.jpg" alt="감자튀김">
+            </div>
+            <div class="grid-item" onclick="addToCart('샐러드')">
+                <img src="image5.jpg" alt="샐러드">
+            </div>
+            <div class="grid-item" onclick="addToCart('음료수')">
+                <img src="image6.jpg" alt="음료수">
+            </div>
         </div>
     </div>
 
     <div class="footer">
         <div>미니 장바구니</div>
-        <div>행버거 라지 세트</div>
-        <div>어러 어플리크</div>
-        <button class="button">결제</button>
+        <div id="cartItems">장바구니에 추가된 항목이 없습니다.</div>
+        <button class="button" id="payButton">결제</button>
+    </div>
+
+    <!-- 모달 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>카드 결제</h2>
+            <p>결제 정보를 입력하세요.</p>
+            <!-- 카드 결제 입력 폼 추가 가능 -->
+            <label for="cardNumber">카드 번호:</label><br>
+            <input type="text" id="cardNumber" placeholder="카드 번호"><br><br>
+            <button class="button">결제하기</button>
+        </div>
     </div>
 
     <script>
+        // 장바구니 아이템을 저장할 객체
+        const cart = {};
+
         function goBack() {
             window.location.href = 'kiosk_main.html'; // 뒤로가기 버튼 클릭 시 이동
+        }
+
+        function addToCart(item) {
+            // 아이템이 이미 장바구니에 존재하는지 확인
+            if (cart[item]) {
+                cart[item] += 1; // 개수 증가
+            } else {
+                cart[item] = 1; // 새 아이템 추가
+            }
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = ''; // 기존 내용 초기화
+
+            // 장바구니 내용 업데이트
+            for (const item in cart) {
+                cartItems.innerHTML += `${item}: ${cart[item]}개<br>`;
+            }
+
+            // 장바구니가 비어있으면 메시지 추가
+            if (Object.keys(cart).length === 0) {
+                cartItems.innerHTML = '장바구니에 추가된 항목이 없습니다.';
+            }
+        }
+
+        // 결제 버튼 클릭 시 모달 열기
+        document.getElementById('payButton').onclick = function() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        // 모달 닫기 함수
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // 모달 외부 클릭 시 닫기
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                closeModal();
+            }
         }
     </script>
 </body>
