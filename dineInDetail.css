@@ -98,7 +98,7 @@ body, html {
     height: 150px; /* 고정된 아이템 높이 */
 }
 
-/* 하단 컨트롤 */
+/* 화살표 버튼 */
 .controls {
     display: flex;
     justify-content: center;
@@ -146,21 +146,31 @@ body, html {
     cursor: pointer;
 }
 
-/* 하단 아이콘 및 결제 버튼 */
+/* 음성 안내 버튼 */
+.voice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.voice-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* 결제 버튼 */
 .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-}
-
-.icon-group {
-    display: flex;
-    gap: 20px;
-}
-
-.icon {
-    font-size: 22px; /* 고정된 아이콘 크기 */
+    margin-top: 20px;
 }
 
 .pay-button {

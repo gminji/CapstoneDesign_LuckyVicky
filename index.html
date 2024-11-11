@@ -3,46 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주문 어쩌구 키오스크</title>
+    <title>주문 키오스크</title>
     <link rel="stylesheet" href="index_styles.css">
 </head>
 <body>
     <div class="container">
         <!-- 메인 화면 -->
         <div id="mainScreen" class="screen">
+            <!-- 헤더: 화면 제목 -->
             <div class="header">
-                <h1>주문 키오스크</h1>
+                <h1 style="font-size: 4em;"><span class="red-text">식사 장소</span>를<br> 선택하세요</h1>
             </div>
+            
+            <!-- 버튼들: 매장 식사와 포장 주문 선택 -->
             <div class="buttons">
                 <div id="dineInButton" class="button dine-in">
-                    <p>매장 식사</p>
+                    <p style="color: white; font-size: 3em;"><span>매장</span><br><span>식사</span></p>
                 </div>
                 <div id="takeOutButton" class="button take-out">
-                    <p>포장 주문</p>
+                    <p style="color: white; font-size: 3em;"><span>포장</span><br><span>주문</span></p>
                 </div>
             </div>
+            
+            <!-- QR 코드 안내 -->
             <div class="footer">
-                <p>QR코드를 핸드폰으로 촬영하면 모바일 주문가능 →</p>
+                <p style="text-align: center;">
+                    <img src="img/qrcode.png" alt="QR 코드" style="width: 70px; height: 70px; vertical-align: middle; margin-bottom: 8px;"><br>
+                    QR 코드를 촬영하면 <span class="red-text">모바일</span>에서<br>
+                    이용이 가능합니다
+                </p>
             </div>
         </div>
 
-        <!-- 매장 식사 화면 -->
+        <!-- 매장 식사 화면 (숨김 상태) -->
         <div id="dineInScreen" class="screen hidden">
+            <!-- 매장 식사 화면 제목 -->
             <div class="header">
                 <h1>매장 식사 화면</h1>
             </div>
+            <!-- 뒤로 가기 버튼 -->
             <button onclick="showMainScreen()">뒤로 가기</button>
         </div>
 
-        <!-- 포장 주문 화면 -->
+        <!-- 포장 주문 화면 (숨김 상태) -->
         <div id="takeOutScreen" class="screen hidden">
+            <!-- 포장 주문 화면 제목 -->
             <div class="header">
                 <h1>포장 주문 화면</h1>
             </div>
+            <!-- 뒤로 가기 버튼 -->
             <button onclick="showMainScreen()">뒤로 가기</button>
         </div>
     </div>
 
+    <!-- 외부 JavaScript 파일 -->
     <script src="script.js"></script>
 </body>
 </html>

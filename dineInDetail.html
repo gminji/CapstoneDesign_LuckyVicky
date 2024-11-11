@@ -10,8 +10,8 @@
     <div class="container">
         <!-- 상단 헤더 및 돌아가기 버튼 -->
         <div class="header">
-            <button onclick="goBack()" class="back-button">← 돌아가기</button>
-            <h2>인공지능 TTS 자막 변환</h2>
+            <button onclick="goBack()" class="back-button">←</button>
+            <h2>음성 안내 자막</h2>
         </div>
         
         <!-- 왼쪽 아이콘과 그리드 -->
@@ -31,7 +31,7 @@
             </div>
         </div>
         
-        <!-- 하단 컨트롤 -->
+        <!-- 화살표 버튼 -->
         <div class="controls">
             <button class="prev-button">◀</button>
             <button class="next-button">▶️</button>
@@ -39,27 +39,25 @@
         
         <!-- 미니 장바구니 -->
         <div class="mini-cart">
-            <div class="emojis">
-                <span>😊</span>
-                <span>😎</span>
-                <span>😍</span>
-            </div>
             <p>미니 장바구니</p>
             <ul>
-                <li>햄버거 라지 세트</li>
-                <li>ㅇㄹㅁㄴ</li>
+                <li>햄버거 라지 세트 - 7,000원 (수량: 1)</li>
+                <li>치킨 너겟 - 3,500원 (수량: 2)</li>
             </ul>
             <div class="zoom-icon">🔍</div>
         </div>
         
-        <!-- 하단 아이콘 및 결제 버튼 -->
+        <!-- 음성 안내 버튼과 음성 인식 버튼, 주문 버튼 -->
+        <div class="voice-buttons">
+            <button class="voice-button">음성 안내</button>
+            <button class="voice-button">음성 인식</button>
+            <button class="voice-button">주문</button>
+        </div>
+        
+        <!-- 결제 버튼 -->
         <div class="actions">
-            <div class="icon-group">
-                <span class="icon head">🛒</span>
-            </div>
             <button id="payButton" class="pay-button">결제</button>
         </div>
-
     </div>
 
     <script>
