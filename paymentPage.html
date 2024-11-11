@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결제 페이지</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .container {
+      position: relative;
+      width: 80vw;
+      max-width: 700px;
+      height: 90vh;
+      padding: 5vw;
+      text-align: center;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 3vw;
+      padding: 0.5em 1em;
+      background-color: #e0e0e0;
+      border: none;
+      cursor: pointer;
+    }
+    .menu-title {
+      font-size: 3.5vw;
+      color: #333;
+      margin-bottom: 4vh;
+    }
+    .menu-items {
+      font-size: 4vw;
+      color: #333;
+      margin-bottom: 4vh;
+    }
+    .add-button {
+      font-size: 3.5vw;
+      color: #333;
+      margin-bottom: 4vh;
+      cursor: pointer;
+    }
+    .payment-button, .confirm-button {
+      width: 40vw;
+      max-width: 300px;
+      padding: 2vw;
+      font-size: 3.5vw;
+      background-color: #e0e0e0;
+      border: none;
+      cursor: pointer;
+      margin-top: 2vh;
+    }
+    .complete-message {
+      font-size: 4vw;
+      color: #333;
+    }
+  </style>
+  <script>
+    function showPaymentComplete() {
+      const container = document.querySelector('.container');
+      container.innerHTML = `
+        <div class="complete-message">결제가 완료되었습니다.<br>맛있게 드세요</div>
+        <button class="confirm-button" onclick="goToHomePage()">확인</button>
+      `;
+    }
+
+    function goToHomePage() {
+      window.location.href = 'index.html'; // index.html 페이지로 이동
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <button class="back-button" onclick="history.back()">뒤로가기</button>
+    <div class="menu-title">고객님이 담은 메뉴는</div>
+    <div class="menu-items">
+      + -<br>+ -<br>+ -
+    </div>
+    <div class="add-button">확인 / 추가</div>
+    <button class="payment-button" onclick="showPaymentComplete()">결제</button>
+  </div>
+</body>
+</html>

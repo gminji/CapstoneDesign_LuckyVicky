@@ -11,7 +11,7 @@
         <!-- 상단 헤더 및 돌아가기 버튼 -->
         <div class="header">
             <button onclick="goBack()" class="back-button">← 돌아가기</button>
-            <h2>인공지능 tts 자막 변환</h2>
+            <h2>인공지능 TTS 자막 변환</h2>
         </div>
         
         <!-- 왼쪽 아이콘과 그리드 -->
@@ -33,12 +33,17 @@
         
         <!-- 하단 컨트롤 -->
         <div class="controls">
-            <button class="prev-button">⏪</button>
-            <button class="next-button">⏩</button>
+            <button class="prev-button">◀</button>
+            <button class="next-button">▶️</button>
         </div>
         
         <!-- 미니 장바구니 -->
         <div class="mini-cart">
+            <div class="emojis">
+                <span>😊</span>
+                <span>😎</span>
+                <span>😍</span>
+            </div>
             <p>미니 장바구니</p>
             <ul>
                 <li>햄버거 라지 세트</li>
@@ -50,17 +55,22 @@
         <!-- 하단 아이콘 및 결제 버튼 -->
         <div class="actions">
             <div class="icon-group">
-                <span class="icon head">🧠</span>
-                <span class="icon bell">🔔</span>
+                <span class="icon head">🛒</span>
             </div>
-            <button class="pay-button">결제</button>
+            <button id="payButton" class="pay-button">결제</button>
         </div>
+
     </div>
 
     <script>
         function goBack() {
             window.history.back();  // 이전 페이지로 돌아가기
         }
+
+        // 결제 버튼 클릭 시 페이지 전환 (새 페이지로 이동)
+        document.getElementById('payButton').addEventListener('click', function() {
+            window.location.href = 'paymentPage.html';  // 결제 페이지로 이동
+        });
     </script>
 </body>
 </html>
