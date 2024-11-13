@@ -9,34 +9,37 @@
 <body>
     <div class="kiosk-container">
         <header class="header">
-            <button class="back-button">&lt;</button>
+            <button class="back-button" onclick="goBack()">&lt;</button>
         </header>
-
+        
         <section class="menu-section">
             <div class="menu-layout">
+                <!-- 왼쪽 세로 버튼 3개 -->
                 <div class="left-icons">
-                    <button class="icon-circle">커피</button>
-                    <button class="icon-circle">주스/에이드</button>
-                    <button class="icon-circle">스무디/프라페</button>
+                    <button class="icon-circle" onclick="changeMenu('coffee')">커피</button>
+                    <button class="icon-circle" onclick="changeMenu('juice')">주스/에이드</button>
+                    <button class="icon-circle" onclick="changeMenu('smoothie')">스무디/프라페</button>
                 </div>
+
+                <!-- 오른쪽 사각형 그리드 6개 -->
                 <div class="menu-grid">
                     <div class="grid-item">
-                        <img src="img/아메리카노.jpg" alt="커피" class="grid-item-image" id="menu-image-1">
+                        <img src="img/아메리카노.jpg" alt="커피" class="grid-item-image" id="menu-image-1" onclick="addToCart('아메리카노', 4500)">
                     </div>
                     <div class="grid-item">
-                        <img src="img/라이트바닐라아몬드라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-2">
+                        <img src="img/라이트바닐라아몬드라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-2" onclick="addToCart('라이트바닐라아몬드라떼', 5500)">
                     </div>
                     <div class="grid-item">
-                        <img src="img/미숫가루커피.jpg" alt="커피" class="grid-item-image" id="menu-image-3">
+                        <img src="img/미숫가루커피.jpg" alt="커피" class="grid-item-image" id="menu-image-3" onclick="addToCart('미숫가루커피', 6000)">
                     </div>
                     <div class="grid-item">
-                        <img src="img/티라미수라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-4">
+                        <img src="img/티라미수라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-4" onclick="addToCart('티라미수라떼', 6500)">
                     </div>
                     <div class="grid-item">
-                        <img src="img/바닐라라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-5">
+                        <img src="img/바닐라라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-5" onclick="addToCart('바닐라라떼', 5000)">
                     </div>
                     <div class="grid-item">
-                        <img src="img/카페모카.jpg" alt="커피" class="grid-item-image" id="menu-image-6">
+                        <img src="img/카페모카.jpg" alt="커피" class="grid-item-image" id="menu-image-6" onclick="addToCart('카페모카', 7000)">
                     </div>
                 </div>
             </div>
@@ -56,7 +59,9 @@
                         <th>수량</th>
                     </tr>
                 </thead>
-                <tbody id="cart-body"></tbody>
+                <tbody id="cart-body">
+                    <!-- 장바구니 항목이 여기에 추가됩니다 -->
+                </tbody>
             </table>
         </section>
 
@@ -72,9 +77,9 @@
             <button class="footer-button order-button" id="orderButton">주문</button>
         </div>
 
-        <div id="order-popup">
-            <div class="popup-content">
-                <h2>주문 목록</h2>
+        <!-- 주문 팝업 추가 -->
+        <div id="order-popup" style="display:none;">
+            <div>
                 <table>
                     <thead>
                         <tr>
@@ -83,21 +88,16 @@
                             <th>수량</th>
                         </tr>
                     </thead>
-                    <tbody id="popup-cart-body"></tbody>
+                    <tbody id="popup-cart-body">
+                        <!-- 장바구니 항목들이 여기에 추가됩니다. -->
+                    </tbody>
                 </table>
-
-                <div class="total-amount">
-                    <span>총 금액: </span><span id="total-amount">0원</span>
-                </div>
-
-                <div class="footer-buttons">
-                    <button>취소</button>
-                    <button class="payment-button">결제</button>
-                </div>
             </div>
+            <button onclick="closeOrderPopup()">닫기</button>
         </div>
     </div>
 
+    <!-- 외부 자바스크립트 파일 연결 -->
     <script src="script.js"></script>
 </body>
 </html>
