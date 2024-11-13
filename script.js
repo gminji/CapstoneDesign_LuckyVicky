@@ -1,27 +1,15 @@
 let cart = []; // 장바구니 항목을 담을 배열
 let totalAmount = 0; // 총 금액
 
-// 메인 화면을 보여주는 함수
-function showMainScreen() {
-    document.getElementById('mainScreen').classList.remove('hidden');
-    document.getElementById('dineInScreen').classList.add('hidden');
-    document.getElementById('takeOutScreen').classList.add('hidden');
-}
-
-// 매장 식사 화면을 보여주는 함수
+// 매장 식사 화면으로 바로 이동
 document.getElementById('dineInButton').addEventListener('click', function() {
-    document.getElementById('mainScreen').classList.add('hidden');
-    document.getElementById('dineInScreen').classList.remove('hidden');
-    // 매장 식사 화면으로 이동
-    window.location.href = 'dineInDetail.html';  // dineInDetail.html 페이지로 이동
+    window.location.href = 'dineInDetail.html';  
 });
 
 // 포장 주문 화면을 보여주는 함수
 document.getElementById('takeOutButton').addEventListener('click', function() {
     document.getElementById('mainScreen').classList.add('hidden');
     document.getElementById('takeOutScreen').classList.remove('hidden');
-    // 포장 주문 화면으로 이동
-    window.location.href = 'takeOutDetail.html';  // takeOutDetail.html 페이지로 이동
 });
 
 // 결제 버튼 클릭 시 새로운 페이지로 이동
@@ -37,32 +25,17 @@ document.getElementById('back-button').addEventListener('click', function() {
 // 장바구니에 항목을 추가하는 함수
 function addToCart(itemName, itemPrice) {
     let cartBody = document.getElementById("cart-body");
-    let existingRow = document.getElementById(itemName); // 상품명이 id로 설정된 행 확인
-    if (existingRow) {
-        let quantityCell = existingRow.querySelector(".quantity");
-        let quantity = parseInt(quantityCell.textContent);
-        quantity++;
-        quantityCell.textContent = quantity;
-
-        let totalPriceCell = existingRow.querySelector(".total-price");
-        totalPriceCell.textContent = itemPrice * quantity;
+    // cart 배열에서 해당 항목을 찾음
+    let item = cart.find(item => item.name === itemName);
+    if (item) {
+        item.quantity++;  // 수량 증가
     } else {
-        let newRow = document.createElement("tr");
-        newRow.id = itemName;
-        newRow.innerHTML = `
-            <td>${itemName}</td>
-            <td class="total-price">${itemPrice}</td>
-            <td>
-                <button class="quantity-button" onclick="updateQuantity('minus', '${itemName}', ${itemPrice})">-</button>
-                <span class="quantity">1</span>
-                <button class="quantity-button" onclick="updateQuantity('plus', '${itemName}', ${itemPrice})">+</button>
-            </td>
-        `;
-        cartBody.appendChild(newRow);
+        item = { name: itemName, price: itemPrice, quantity: 1 };
+        cart.push(item);  // 새 항목 추가
     }
 
-    updateCart(); // 장바구니 화면 갱신
-    updateTotalAmount(itemPrice); // 총 금액 갱신
+    updateCart();  // 장바구니 화면 갱신
+    updateTotalAmount(itemPrice);  // 총 금액 갱신
 }
 
 // 장바구니 내용 갱신
@@ -83,24 +56,10 @@ function updateTotalAmount(itemPrice) {
     document.getElementById("total-amount").textContent = totalAmount + "원";
 }
 
-// 수량 업데이트 함수
-function updateQuantity(action, itemName, itemPrice) {
-    let row = document.getElementById(itemName);
-    let quantityCell = row.querySelector(".quantity");
-    let quantity = parseInt(quantityCell.textContent);
-
-    if (action === "minus" && quantity > 1) {
-        quantity--;
-    } else if (action === "plus") {
-        quantity++;
-    }
-
-    quantityCell.textContent = quantity;
-    let totalPriceCell = row.querySelector(".total-price");
-    totalPriceCell.textContent = itemPrice * quantity;
-
-    updateCart(); // 장바구니 내용 갱신
-}
+// 주문 버튼 클릭 시 팝업 열기
+document.getElementById('orderButton').addEventListener('click', function() {
+    openOrderPopup();
+});
 
 // 장바구니 항목을 팝업에 추가하는 함수
 function openOrderPopup() {
@@ -156,12 +115,23 @@ function changeMenu(menuType) {
         ]
     };
 
+    let menuImages = images[menuType];
     for (let i = 1; i <= 6; i++) {
-        document.getElementById('menu-image-' + i).src = images[menuType][i - 1];
+        if (menuImages[i - 1]) {
+            document.getElementById('menu-image-' + i).src = menuImages[i - 1];
+        }
     }
 }
 
-// 주문 버튼 클릭 시 팝업 열기
-document.getElementById('orderButton').addEventListener('click', function() {
-    openOrderPopup();
+// 메뉴 버튼 클릭 시 changeMenu 호출
+document.querySelector('.left-icons .icon-circle:nth-child(1)').addEventListener('click', function() {
+    changeMenu('coffee');
+});
+
+document.querySelector('.left-icons .icon-circle:nth-child(2)').addEventListener('click', function() {
+    changeMenu('juice');
+});
+
+document.querySelector('.left-icons .icon-circle:nth-child(3)').addEventListener('click', function() {
+    changeMenu('smoothie');
 });
