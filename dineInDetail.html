@@ -1,74 +1,78 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>매장 식사 상세 화면</title>
+    <title>Restaurant Kiosk</title>
     <link rel="stylesheet" href="dineInDetail.css">
 </head>
 <body>
-    <div class="container">
-        <!-- 상단 헤더 및 돌아가기 버튼 -->
-        <div class="header">
-            <button onclick="goBack()" class="back-button">←</button>
-            <h2>음성 안내 자막</h2>
-        </div>
-        
-        <!-- 왼쪽 아이콘과 그리드 -->
-        <div class="content">
-            <div class="left-icons">
-                <div class="icon-circle"></div>
-                <div class="icon-circle"></div>
-                <div class="icon-circle"></div>
+    <div class="kiosk-container">
+        <header class="header">
+            <button class="back-button">&lt;</button>
+            <div class="title">음성안내 자막</div>
+        </header>
+
+        <section class="menu-section">
+            <div class="menu-layout">
+                <!-- 왼쪽 세로 버튼 3개 -->
+                <div class="left-icons">
+                    <button class="icon-circle">원 1</button>
+                    <button class="icon-circle">원 2</button>
+                    <button class="icon-circle">원 3</button>
+                </div>
+
+                <!-- 오른쪽 사각형 그리드 6개 -->
+                <div class="menu-grid">
+                    <div class="grid-item">사각형 1</div>
+                    <div class="grid-item">사각형 2</div>
+                    <div class="grid-item">사각형 3</div>
+                    <div class="grid-item">사각형 4</div>
+                    <div class="grid-item">사각형 5</div>
+                    <div class="grid-item">사각형 6</div>
+                </div>
             </div>
-            <div class="grid">
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
+
+            <div class="navigation">
+                <button class="nav-button">&lt;</button>
+                <button class="nav-button">&gt;</button>
             </div>
-        </div>
-        
-        <!-- 화살표 버튼 -->
-        <div class="controls">
-            <button class="prev-button">◀</button>
-            <button class="next-button">▶️</button>
-        </div>
-        
-        <!-- 미니 장바구니 -->
-        <div class="mini-cart">
-            <p>미니 장바구니</p>
-            <ul>
-                <li>햄버거 라지 세트 - 7,000원 (수량: 1)</li>
-                <li>치킨 너겟 - 3,500원 (수량: 2)</li>
-            </ul>
-            <div class="zoom-icon">🔍</div>
-        </div>
-        
-        <!-- 음성 안내 버튼과 음성 인식 버튼, 주문 버튼 -->
-        <div class="voice-buttons">
-            <button class="voice-button">음성 안내</button>
-            <button class="voice-button">음성 인식</button>
-            <button class="voice-button">주문</button>
-        </div>
-        
-        <!-- 결제 버튼 -->
-        <div class="actions">
-            <button id="payButton" class="pay-button">결제</button>
+        </section>
+
+        <section class="order-section">
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>상품명</th>
+                        <th>가격</th>
+                        <th>수량</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>햄버거 라지 세트</td>
+                        <td>8500</td>
+                        <td>
+                            <button class="quantity-button">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-button">+</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="footer-buttons">
+            <button class="footer-button voice-button">
+                <span class="first-line">음성</span>
+                <span class="second-line">안내</span>
+            </button>
+            <button class="footer-button voice-button">
+                <span class="first-line">음성</span>
+                <span class="second-line">인식</span>
+            </button>
+            <button class="footer-button order-button">주문</button>
         </div>
     </div>
-
-    <script>
-        function goBack() {
-            window.history.back();  // 이전 페이지로 돌아가기
-        }
-
-        // 결제 버튼 클릭 시 페이지 전환 (새 페이지로 이동)
-        document.getElementById('payButton').addEventListener('click', function() {
-            window.location.href = 'paymentPage.html';  // 결제 페이지로 이동
-        });
-    </script>
 </body>
 </html>
