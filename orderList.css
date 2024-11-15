@@ -23,6 +23,13 @@
     margin: 0;
 }
 
+/* 장바구니의 가격 스타일 */
+#cart-body .total-price {
+    color: black;
+    font-size: 20px; /* 원하는 크기로 조절 */
+}
+
+
 /* 주문 테이블 스타일 */
 .popup-order-table {
     width: 100%;

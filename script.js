@@ -1,40 +1,125 @@
-// 장바구니 배열
+// 메뉴 항목을 객체 배열로 정의
+const menuItems = {
+    coffee: [
+        { name: '아메리카노', price: 4500, image: 'img/아메리카노.jpg' },
+        { name: '라이트바닐라아몬드라떼', price: 5500, image: 'img/라이트바닐라아몬드라떼.jpg' },
+        { name: '미숫가루커피', price: 6000, image: 'img/미숫가루커피.jpg' },
+        { name: '티라미수라떼', price: 6500, image: 'img/티라미수라떼.jpg' },
+        { name: '바닐라라떼', price: 5000, image: 'img/바닐라라떼.jpg' },
+        { name: '카페모카', price: 7000, image: 'img/카페모카.jpg' }
+    ],
+    juice: [
+        { name: '자몽주스', price: 6000, image: 'img/자몽주스.jpg' },
+        { name: '샤인머스캣주스', price: 7000, image: 'img/샤인머스캣주스.jpg' },
+        { name: '딸기주스', price: 6000, image: 'img/딸기주스.jpg' },
+        { name: '딸기바나나주스', price: 6500, image: 'img/딸기바나나주스.jpg' },
+        { name: '라임모히또', price: 6500, image: 'img/라임모히또.jpg' },
+        { name: '레몬에이드', price: 5500, image: 'img/레몬에이드.jpg' }
+    ],
+    smoothie: [
+        { name: '골드망고스무디', price: 6500, image: 'img/골드망고스무디.jpg' },
+        { name: '코코넛커피스무디', price: 7000, image: 'img/코코넛커피스무디.jpg' },
+        { name: '딸기요거트스무디', price: 7000, image: 'img/딸기요거트스무디.jpg' },
+        { name: '딸기쿠키프라페', price: 6500, image: 'img/딸기쿠키프라페.jpg' },
+        { name: '쿠키프라페', price: 6000, image: 'img/쿠키프라페.jpg' },
+        { name: '녹차프라페', price: 6500, image: 'img/녹차프라페.jpg' }
+    ]
+};
+
+// 전역 장바구니 배열
 let cart = [];
 
-// 장바구니에 항목 추가 함수
-function addToCart(item, price) {
-    let cartItem = cart.find((cartItem) => cartItem.name === item);
-    if (cartItem) {
-        cartItem.quantity += 1;
-    } else {
-        cart.push({ name: item, price: price, quantity: 1 });
-    }
-    updateCart(); // 장바구니 내용은 갱신하지만 총 가격은 표시하지 않음
+// 메뉴 변경 함수
+function changeMenu(menuType) {
+    const menuGrid = document.querySelector('.menu-grid');
+    menuGrid.innerHTML = '';
+
+    menuItems[menuType].forEach((menuItem) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'grid-item';
+
+        const img = document.createElement('img');
+        img.src = menuItem.image;
+        img.alt = menuItem.name;
+        img.className = 'grid-item-image';
+        img.onclick = () => addToCart(menuItem.name, menuItem.price);
+
+        itemDiv.appendChild(img);
+        menuGrid.appendChild(itemDiv);
+    });
 }
 
-// 장바구니 업데이트 함수
-function updateCart() {
-    const cartBody = document.getElementById('cart-body');
-    cartBody.innerHTML = ''; // 기존 항목 제거
+// 장바구니에 항목을 추가하는 함수
+function addToCart(itemName, itemPrice) {
+    let cartBody = document.getElementById("cart-body");
+    let existingRow = document.getElementById(itemName);
+    
+    if (existingRow) {
+        let quantityCell = existingRow.querySelector(".quantity");
+        let quantity = parseInt(quantityCell.textContent);
+        quantity++;
+        quantityCell.textContent = quantity;
 
-    // 장바구니에 아이템만 표시 (총 가격은 표시하지 않음)
-    cart.forEach((item) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.name}</td>
-            <td>${item.price}원</td>
-            <td class="quantity">${item.quantity}</td>
+        let totalPriceCell = existingRow.querySelector(".total-price");
+        totalPriceCell.textContent = itemPrice * quantity;
+
+        cart.forEach(item => {
+            if (item.name === itemName) {
+                item.quantity = quantity;
+            }
+        });
+    } else {
+        let newRow = document.createElement("tr");
+        newRow.id = itemName;
+        newRow.innerHTML = `
+            <td>${itemName}</td>
+            <td class="total-price">${itemPrice}</td>
+            <td>
+                <button class="quantity-button" onclick="updateQuantity('minus', '${itemName}', ${itemPrice})">-</button>
+                <span class="quantity">1</span>
+                <button class="quantity-button" onclick="updateQuantity('plus', '${itemName}', ${itemPrice})">+</button>
+            </td>
         `;
-        cartBody.appendChild(row);
+        cartBody.appendChild(newRow);
+
+        cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+    }
+}
+
+// 수량을 업데이트하는 함수
+function updateQuantity(action, itemName, itemPrice) {
+    let row = document.getElementById(itemName);
+    let quantityCell = row.querySelector(".quantity");
+    let quantity = parseInt(quantityCell.textContent);
+
+    if (action === "minus") {
+        if (quantity > 1) {
+            quantity--;
+        } else if (quantity === 1) {
+            row.remove();
+            cart = cart.filter(item => item.name !== itemName);
+            return;
+        }
+    } else if (action === "plus") {
+        quantity++;
+    }
+
+    quantityCell.textContent = quantity;
+    let totalPriceCell = row.querySelector(".total-price");
+    totalPriceCell.textContent = itemPrice * quantity;
+
+    cart.forEach(item => {
+        if (item.name === itemName) {
+            item.quantity = quantity;
+        }
     });
 }
 
 // 팝업 열기 함수
 function openOrderPopup() {
     const popupCartBody = document.getElementById('popup-cart-body');
-    popupCartBody.innerHTML = ''; // 팝업 내용 초기화
+    popupCartBody.innerHTML = '';
 
-    // 장바구니에 있는 항목을 팝업에 추가 (총 가격 제외)
     cart.forEach((item) => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -45,98 +130,47 @@ function openOrderPopup() {
         popupCartBody.appendChild(row);
     });
 
-    // 팝업 창 표시
     document.getElementById('order-popup').style.display = 'flex';
-
-    // 총 금액 업데이트
     updateTotalPrice();
 }
 
-// 총 금액 업데이트 함수
+// 총 가격 업데이트 함수
 function updateTotalPrice() {
-    let totalPrice = 0;
-
-    // 장바구니의 각 항목을 순회하며 총 금액 계산
-    cart.forEach(item => {
-        totalPrice += item.price * item.quantity;
-    });
-
-    // 총 금액을 팝업에서만 표시 (₩ 제거하고 원 추가)
     const totalPriceElement = document.getElementById('total-price');
-    totalPriceElement.textContent = `${totalPrice.toLocaleString()}원`;  // 숫자 포맷팅 후 '원' 추가
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    totalPriceElement.textContent = `${totalPrice}원`;
 }
-
 
 // 팝업 닫기 함수
 function closeOrderPopup() {
     document.getElementById('order-popup').style.display = 'none';
 }
 
-// 결제하기 함수
+// 결제 함수
 function processPayment() {
-    alert('결제가 완료되었습니다!');
+    alert("결제가 완료되었습니다!");
+    cart = [];
+    document.getElementById("cart-body").innerHTML = '';
+    closeOrderPopup();
 }
 
-// 주문 버튼 클릭 시 팝업 창 열기
-document.getElementById('orderButton').addEventListener('click', function() {
-    openOrderPopup();
-});
+// 페이지 로드 시 기본 메뉴 설정
+window.onload = () => {
+    changeMenu('coffee');
+    document.getElementById('orderButton').addEventListener('click', openOrderPopup);
+};
 
 // 뒤로 가기 함수
 function goBack() {
-    window.history.back();
+    window.location.href = 'index.html';  // index.html로 이동
 }
 
-// 메뉴 변경 함수
-function changeMenu(menuType) {
-    let images = {
-        'coffee': [
-            'img/아메리카노.jpg',
-            'img/라이트바닐라아몬드라떼.jpg',
-            'img/미숫가루커피.jpg',
-            'img/티라미수라떼.jpg',
-            'img/바닐라라떼.jpg',
-            'img/카페모카.jpg'
-        ],
-        'juice': [
-            'img/자몽주스.jpg',
-            'img/샤인머스캣주스.jpg',
-            'img/딸기주스.jpg',
-            'img/딸기바나나주스.jpg',
-            'img/라임모히또.jpg',
-            'img/레몬에이드.jpg'
-        ],
-        'smoothie': [
-            'img/골드망고스무디.jpg',
-            'img/코코넛커피스무디.jpg',
-            'img/딸기요거트스무디.jpg',
-            'img/딸기쿠키프라페.jpg',
-            'img/쿠키프라페.jpg',
-            'img/녹차프라페.jpg'
-        ]
-    };
-
-    for (let i = 1; i <= 6; i++) {
-        document.getElementById('menu-image-' + i).src = images[menuType][i - 1];
-    }
+// 매장 식사 화면으로 이동
+function goToDineInDetail() {
+    window.location.href = 'dineInDetail.html';  // 매장 식사 화면으로 이동
 }
 
-// 장바구니에서 항목 수량 업데이트 함수
-function updateQuantity(action, itemName, itemPrice) {
-    let row = document.getElementById(itemName);
-    let quantityCell = row.querySelector(".quantity");
-    let quantity = parseInt(quantityCell.textContent);
-
-    if (action === "minus" && quantity > 1) {
-        quantity--;
-    } else if (action === "plus") {
-        quantity++;
-    }
-
-    quantityCell.textContent = quantity;
-
-    let totalPriceCell = row.querySelector(".total-price");
-    totalPriceCell.textContent = itemPrice * quantity;
-
-    updateTotalPrice(); // 팝업에서만 총 금액 재계산
+// 포장 주문 화면으로 이동
+function goToTakeOutDetail() {
+    window.location.href = 'dineInDetail.html';  // 포장 주문 화면으로 이동
 }

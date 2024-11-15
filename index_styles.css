@@ -58,6 +58,7 @@ body {
     overflow-wrap: break-word;
     text-align: center;
     padding: 10px;
+    cursor: pointer; /* 커서가 손 모양으로 변하도록 추가 */
 }
 
 /* 매장 식사 버튼 스타일 */
