@@ -186,16 +186,18 @@ function goToTakeOutDetail() {
     window.location.href = 'dineInDetail.html';  // 포장 주문 화면으로 이동
 }
 
+document.getElementById('homeButton').addEventListener('click', goHome);
+
 function goHome() {
     // 장바구니와 팝업 내용 초기화
     localStorage.removeItem('cart'); // 로컬 스토리지에 저장된 장바구니 초기화
     // 또는 아래처럼 전역 변수 사용 시 직접 초기화 가능
     cart = []; // 전역 cart 배열 초기화
-    
+
     // 팝업창 내용도 초기화 필요시
-    document.getElementById('order-popup').style.display = 'none';
-    
+    // 예: document.getElementById('order-popup').style.display = 'none';
+
     // index.html로 이동
-    window.location.href = 'index.html'; 
+    window.location.href = 'index.html';
 }
 
