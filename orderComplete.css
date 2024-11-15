@@ -4,11 +4,22 @@
 }
 
 * {
+    cursor: none;
     font-weight: bold;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+} 
+
 
 body {
     font-family: 'font';

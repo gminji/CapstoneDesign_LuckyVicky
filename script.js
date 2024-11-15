@@ -1,3 +1,14 @@
+//마우스 포인터 강조
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor');
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', (event) => {
+        cursor.style.left = `${event.pageX}px`;
+        cursor.style.top = `${event.pageY}px`;
+    });
+});
 // 메뉴 항목을 객체 배열로 정의
 const menuItems = {
     coffee: [
@@ -187,3 +198,4 @@ function goHome() {
     // index.html로 이동
     window.location.href = 'index.html'; 
 }
+

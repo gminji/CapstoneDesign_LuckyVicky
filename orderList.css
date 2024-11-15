@@ -1,3 +1,10 @@
+* {
+    cursor: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* 팝업 내용 영역 스타일 */
 .popup-content {
     background-color: #fff;
@@ -15,6 +22,16 @@
     align-items: center;
     padding: 1rem;
 }
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+} 
+
 
 /* 주문 리스트 제목의 글씨 크기 */
 #order-popup h2 {
