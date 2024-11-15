@@ -70,7 +70,7 @@ body {
 .line {
     width: 4px;
     height: 60px;
-    background-color: #ff0000;
+    background-color: #FF4500;
     margin: 0 55px;
 }
 
@@ -84,7 +84,7 @@ body {
 
 .order-text .number {
     font-size: 24px;
-    color: #ff0000;
+    color: #FF4500;
     font-weight: bold;
 }
 
@@ -92,7 +92,7 @@ body {
     width: 150px;
     padding: 10px;
     font-size: 16px;
-    background-color: #a50101;
+    background-color: #FF4500;
     color: white;
     border: none;
     cursor: pointer;

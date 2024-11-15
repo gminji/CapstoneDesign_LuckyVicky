@@ -185,6 +185,24 @@ function goToDineInDetail() {
 function goToTakeOutDetail() {
     window.location.href = 'dineInDetail.html';  // 포장 주문 화면으로 이동
 }
+// 주문 번호 초기화
+let orderNumber = 1;
+
+// 주문 번호를 증가시키는 함수
+function homeButton() {
+    // 주문 번호 증가
+    orderNumber++;
+
+    // 주문 번호를 화면에 업데이트
+    const orderNumberElement = document.getElementById('order-number-display');
+    // 주문 번호를 두 자리로 포맷 (예: 01, 02, 03)
+    orderNumberElement.textContent = orderNumber.toString().padStart(3, '0');
+
+    // index.html로 이동
+    window.location.href = 'index.html'; // 페이지를 index.html로 이동
+}
+
+
 
 document.getElementById('homeButton').addEventListener('click', goHome);
 
