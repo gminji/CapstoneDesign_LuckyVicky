@@ -148,10 +148,10 @@ function closeOrderPopup() {
 
 // 결제 함수
 function processPayment() {
-    alert("결제가 완료되었습니다!");
     cart = [];
     document.getElementById("cart-body").innerHTML = '';
     closeOrderPopup();
+    window.location.href = 'orderComplete.html';  // 결제 완료 페이지로 이동
 }
 
 // 페이지 로드 시 기본 메뉴 설정
@@ -173,4 +173,17 @@ function goToDineInDetail() {
 // 포장 주문 화면으로 이동
 function goToTakeOutDetail() {
     window.location.href = 'dineInDetail.html';  // 포장 주문 화면으로 이동
+}
+
+function goHome() {
+    // 장바구니와 팝업 내용 초기화
+    localStorage.removeItem('cart'); // 로컬 스토리지에 저장된 장바구니 초기화
+    // 또는 아래처럼 전역 변수 사용 시 직접 초기화 가능
+    cart = []; // 전역 cart 배열 초기화
+    
+    // 팝업창 내용도 초기화 필요시
+    document.getElementById('order-popup').style.display = 'none';
+    
+    // index.html로 이동
+    window.location.href = 'index.html'; 
 }
