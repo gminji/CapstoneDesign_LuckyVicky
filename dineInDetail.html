@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Kiosk</title>
     <link rel="stylesheet" href="dineInDetail.css">
+    <link rel="stylesheet" href="orderList.css">
 </head>
 <body>
     <div class="kiosk-container">
@@ -14,17 +15,13 @@
         
         <section class="menu-section">
             <div class="menu-layout">
-                <!-- 왼쪽 세로 버튼 3개 -->
                 <div class="left-icons">
                     <button class="icon-circle" onclick="changeMenu('coffee')">커피</button>
                     <button class="icon-circle" onclick="changeMenu('juice')">주스/에이드</button>
                     <button class="icon-circle" onclick="changeMenu('smoothie')">스무디/프라페</button>
                 </div>
         
-                <!-- 오른쪽 사각형 그리드 6개 -->
-                <div class="menu-grid" id="menuGrid">
-                    <!-- 메뉴 항목은 여기서 동적으로 추가됩니다. -->
-                </div>
+                <div class="menu-grid" id="menuGrid"></div>
             </div>
         
             <div class="navigation">
@@ -32,7 +29,6 @@
                 <button class="nav-button">&gt;</button>
             </div>
         </section>
-        
 
         <section class="order-section">
             <table class="order-table">
@@ -43,28 +39,35 @@
                         <th>수량</th>
                     </tr>
                 </thead>
-                <tbody id="cart-body">
-                    <!-- 장바구니 항목이 여기에 추가됩니다 -->
-                </tbody>
+                <tbody id="cart-body"></tbody>
             </table>
         </section>
 
         <div class="footer-buttons">
-            <button class="footer-button voice-button">
+            <!-- 음성 안내 버튼 -->
+            <button class="footer-button voice-button" id="voiceButton">
                 <span class="first-line">음성</span>
                 <span class="second-line">안내</span>
             </button>
-            <button class="footer-button voice-button">
+
+            <!-- 음성 인식 버튼 -->
+            <button class="footer-button voice-button" id="voiceRecognitionButton">
                 <span class="first-line">음성</span>
                 <span class="second-line">인식</span>
             </button>
+
+            <!-- 주문 버튼 -->
             <button class="footer-button order-button" id="orderButton">주문</button>
         </div>
 
-        <!-- 주문 팝업 추가 -->
+        <!-- 주문 팝업 -->
         <div id="order-popup" style="display:none;">
-            <div>
-                <table>
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2>주문 리스트</h2>
+                </div>
+        
+                <table class="popup-order-table">
                     <thead>
                         <tr>
                             <th>상품명</th>
@@ -72,16 +75,24 @@
                             <th>수량</th>
                         </tr>
                     </thead>
-                    <tbody id="popup-cart-body">
-                        <!-- 장바구니 항목들이 여기에 추가됩니다. -->
-                    </tbody>
+                    <tbody id="popup-cart-body"></tbody>
                 </table>
+        
+                <div class="total">
+                    <span class="total-label">총 주문 금액</span>
+                    <div id="total-price" class="total-price">0</div>
+                </div>
+        
+                <div class="popup-footer">
+                    <button class="order-footer-button" onclick="closeOrderPopup()">취소</button>
+                    <button class="order-footer-button" onclick="processPayment()">결제</button>
+                </div>
             </div>
-            <button onclick="closeOrderPopup()">닫기</button>
         </div>
     </div>
 
-    <!-- 외부 자바스크립트 파일 연결 -->
-    <script src="script.js"></script>
+    <!-- 스크립트 파일 추가 -->
+    <script src="voice.js"></script> <!-- voice.js 추가 -->
+    <script src="script.js"></script> <!-- 기존 script.js 추가 -->
 </body>
 </html>

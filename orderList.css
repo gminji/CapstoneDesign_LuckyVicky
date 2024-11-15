@@ -1,0 +1,120 @@
+* {
+    cursor: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 팝업 내용 영역 스타일 */
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 팝업 전체 정렬 */
+#order-popup .popup-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+} 
+
+
+/* 주문 리스트 제목의 글씨 크기 */
+#order-popup h2 {
+    font-size: 3rem; /* 글씨 크게 */
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 장바구니의 가격 스타일 */
+#cart-body .total-price {
+    color: black;
+    font-size: 20px; /* 원하는 크기로 조절 */
+}
+
+
+/* 주문 테이블 스타일 */
+.popup-order-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 2px solid #D70000; /* 빨간색 테두리 */
+}
+
+.popup-order-table th,
+.popup-order-table td {
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.popup-order-table th {
+    background-color: #F4A3A3;
+    font-size: 1.3rem;
+}
+
+/* 푸터 버튼 스타일 */
+.popup-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* 버튼 공통 스타일 */
+.order-footer-button {
+    background-color: #D3D3D3;
+    color: white;
+    padding: 28px 14px;  /* 세로 길이를 늘리기 위해 padding 값을 변경 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem; /* 글씨 크기 증가 */
+    font-weight: bold; /* 글씨 두껍게 */
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 텍스트 수직 및 수평 중앙 정렬 */
+}
+
+/* 결제 버튼 스타일 */
+.order-footer-button:nth-child(2) {
+    background-color: #D70000;
+}
+
+/* 세로 길게 하기 */
+.order-footer-button {
+    height: 90px; /* 버튼의 세로 길이를 늘림 */
+}
+
+/* 총 주문 금액 스타일 */
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.total-label {
+    font-size: 2.5rem; /* 글씨 크기 */
+    font-weight: bold;
+}
+
+.total-price {
+    font-size: 2.5rem; /* 글씨 크기 */
+    color: red; /* 빨간색 글씨 */
+    font-weight: bold;
+}
