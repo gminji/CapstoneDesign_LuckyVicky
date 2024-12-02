@@ -91,52 +91,74 @@ const App = {
     },
 
     // 수량을 업데이트하는 함수
-    updateQuantity: function(action, itemName, itemPrice) {
-        let row = document.getElementById(itemName);
-        let quantityCell = row.querySelector(".quantity");
-        let quantity = parseInt(quantityCell.textContent);
+updateQuantity: function(action, itemName, itemPrice) {
+    let row = document.getElementById(itemName);
+    let quantityCell = row.querySelector(".quantity");
+    let quantity = parseInt(quantityCell.textContent);
 
-        if (action === "minus") {
-            if (quantity > 1) {
-                quantity--;
-            } else if (quantity === 1) {
-                row.remove();
-                this.cart = this.cart.filter(item => item.name !== itemName);
-                return;
-            }
-        } else if (action === "plus") {
-            quantity++;
+    if (action === "minus") {
+        if (quantity > 1) {
+            quantity--;
+        } else if (quantity === 1) {
+            row.remove();
+            this.cart = this.cart.filter(item => item.name !== itemName);
+            return;
         }
+    } else if (action === "plus") {
+        quantity++;
+    }
 
-        quantityCell.textContent = quantity;
-        let totalPriceCell = row.querySelector(".total-price");
-        totalPriceCell.textContent = itemPrice * quantity;
+    quantityCell.textContent = quantity;
+    let totalPriceCell = row.querySelector(".total-price");
+    totalPriceCell.textContent = itemPrice * quantity;
 
-        this.cart.forEach(item => {
-            if (item.name === itemName) {
-                item.quantity = quantity;
-            }
-        });
-    },
+    // 장바구니 항목의 수량도 갱신
+    this.cart.forEach(item => {
+        if (item.name === itemName) {
+            item.quantity = quantity;
+        }
+    });
+
+    // 팝업에서 가격 갱신
+    this.updatePopupPrices();
+},
 
     // 팝업 열기 함수
-    openOrderPopup: function() {
-        const popupCartBody = document.getElementById('popup-cart-body');
-        popupCartBody.innerHTML = '';
+openOrderPopup: function() {
+    const popupCartBody = document.getElementById('popup-cart-body');
+    popupCartBody.innerHTML = '';  // 기존 항목들 초기화
 
-        this.cart.forEach((item) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${item.name}</td>
-                <td>${item.price}원</td>
-                <td>${item.quantity}</td>
-            `;
-            popupCartBody.appendChild(row);
-        });
+    this.cart.forEach((item) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td class="total-price">${item.price * item.quantity}</td>
+            <td>${item.quantity}</td>
+        `;
+        popupCartBody.appendChild(row);
+    });
 
-        document.getElementById('order-popup').style.display = 'flex';
-        this.updateTotalPrice();
-    },
+    document.getElementById('order-popup').style.display = 'flex';
+    this.updateTotalPrice();  // 총 가격 업데이트
+},
+
+// 팝업에서 항목들의 가격을 갱신하는 함수
+updatePopupPrices: function() {
+    const popupCartBody = document.getElementById('popup-cart-body');
+    const rows = popupCartBody.querySelectorAll('tr');
+    
+    // 각 항목의 가격을 재계산하여 갱신
+    rows.forEach(row => {
+        const itemName = row.querySelector('td').textContent;  // 첫 번째 셀에서 이름 가져오기
+        const item = this.cart.find(item => item.name === itemName);
+        const totalPriceCell = row.querySelector('.total-price');
+        totalPriceCell.textContent = item.price * item.quantity;  // 가격 업데이트
+    });
+
+    // 총 가격도 다시 갱신
+    this.updateTotalPrice();
+},
+
 
     // 총 가격 업데이트 함수
     updateTotalPrice: function() {

@@ -5,6 +5,16 @@
     box-sizing: border-box;
 }
 
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
 /* 팝업 내용 영역 스타일 */
 .popup-content {
     background-color: #fff;
@@ -115,6 +125,6 @@
 
 .total-price {
     font-size: 2.5rem; /* 글씨 크기 */
-    color: red; /* 빨간색 글씨 */
+    color: black; /* 빨간색 글씨 */
     font-weight: bold;
 }
