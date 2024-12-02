@@ -5,46 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Kiosk</title>
     <link rel="stylesheet" href="dineInDetail.css">
+    <link rel="stylesheet" href="orderList.css">
 </head>
 <body>
     <div class="kiosk-container">
         <header class="header">
-            <button class="back-button">&lt;</button>
+            <button class="back-button" onclick="App.goBack()">&lt;</button>
         </header>
-
+        
         <section class="menu-section">
             <div class="menu-layout">
                 <div class="left-icons">
-                    <button class="icon-circle">커피</button>
-                    <button class="icon-circle">주스/에이드</button>
-                    <button class="icon-circle">스무디/프라페</button>
+                    <button class="icon-circle" onclick="App.changeMenu('coffee')">커피</button>
+                    <button class="icon-circle" onclick="App.changeMenu('juice')">주스/에이드</button>
+                    <button class="icon-circle" onclick="App.changeMenu('smoothie')">스무디/프라페</button>
                 </div>
-                <div class="menu-grid">
-                    <div class="grid-item">
-                        <img src="img/아메리카노.jpg" alt="커피" class="grid-item-image" id="menu-image-1">
-                    </div>
-                    <div class="grid-item">
-                        <img src="img/라이트바닐라아몬드라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-2">
-                    </div>
-                    <div class="grid-item">
-                        <img src="img/미숫가루커피.jpg" alt="커피" class="grid-item-image" id="menu-image-3">
-                    </div>
-                    <div class="grid-item">
-                        <img src="img/티라미수라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-4">
-                    </div>
-                    <div class="grid-item">
-                        <img src="img/바닐라라떼.jpg" alt="커피" class="grid-item-image" id="menu-image-5">
-                    </div>
-                    <div class="grid-item">
-                        <img src="img/카페모카.jpg" alt="커피" class="grid-item-image" id="menu-image-6">
-                    </div>
-                </div>
+        
+                <div class="menu-grid" id="menuGrid"></div>
             </div>
-
-            <div class="navigation">
-                <button class="nav-button">&lt;</button>
-                <button class="nav-button">&gt;</button>
-            </div>
+            
         </section>
 
         <section class="order-section">
@@ -61,21 +40,28 @@
         </section>
 
         <div class="footer-buttons">
-            <button class="footer-button voice-button">
-                <span class="first-line">음성</span>
-                <span class="second-line">안내</span>
+            <!-- 음성 안내 버튼 -->
+            <button class="footer-button voice-button" id="voiceButton">
+                음성안내
             </button>
-            <button class="footer-button voice-button">
-                <span class="first-line">음성</span>
-                <span class="second-line">인식</span>
+        
+            <!-- 음성 인식 버튼 -->
+            <button class="footer-button voice-button" id="voiceRecognitionButton">
+                음성인식
             </button>
+        
+            <!-- 주문 버튼 -->
             <button class="footer-button order-button" id="orderButton">주문</button>
-        </div>
+        </div>        
 
-        <div id="order-popup">
+        <!-- 주문 팝업 -->
+        <div id="order-popup" style="display:none;">
             <div class="popup-content">
-                <h2>주문 목록</h2>
-                <table>
+                <div class="popup-header">
+                    <h2>주문 리스트</h2>
+                </div>
+        
+                <table class="popup-order-table">
                     <thead>
                         <tr>
                             <th>상품명</th>
@@ -85,19 +71,22 @@
                     </thead>
                     <tbody id="popup-cart-body"></tbody>
                 </table>
-
-                <div class="total-amount">
-                    <span>총 금액: </span><span id="total-amount">0원</span>
+        
+                <div class="total">
+                    <span class="total-label">총 주문 금액</span>
+                    <div id="total-price" class="total-price">0</div>
                 </div>
-
-                <div class="footer-buttons">
-                    <button>취소</button>
-                    <button class="payment-button">결제</button>
+        
+                <div class="popup-footer">
+                    <button class="order-footer-button" onclick="App.closeOrderPopup()">취소</button>
+                    <button class="order-footer-button" onclick="App.processPayment()">결제</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- 스크립트 파일 추가 -->
+    <script src="voice.js"></script> <!-- voice.js 추가 -->
+    <script src="script.js"></script> <!-- 기존 script.js 추가 -->
 </body>
 </html>
