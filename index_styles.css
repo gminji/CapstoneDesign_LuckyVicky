@@ -69,7 +69,6 @@ body {
     overflow-wrap: break-word;
     text-align: center;
     padding: 10px;
-    cursor: pointer; /* 커서가 손 모양으로 변하도록 추가 */
 }
 
 /* 매장 식사 버튼 스타일 */
@@ -100,4 +99,26 @@ body {
 /* 버튼 내부 텍스트 스타일 */
 .button p {
     color: white;
+}
+
+/* 모바일 화면 (화면 너비 480px 이하) */
+@media (max-width: 480px) {
+    .container {
+        height: auto; /* 세로 크기를 자동으로 조정 */
+        padding: 10px;
+    }
+
+    .buttons {
+        flex-direction: column; /* 버튼을 세로로 배치 */
+        height: auto; /* 세로 크기를 자동으로 조정 */
+    }
+
+    .button {
+        margin-bottom: 10px; /* 버튼 간 간격 추가 */
+        font-size: 18px; /* 버튼 텍스트 크기 줄이기 */
+    }
+
+    .footer {
+        font-size: 14px; /* 하단 텍스트 크기 조정 */
+    }
 }

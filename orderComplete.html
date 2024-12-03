@@ -20,11 +20,16 @@
             </div>
             <div class="line"></div>
         </div>
-        <button class="home-button" onclick="homeButton()">처음으로</button>
-        
+        <!-- home-button을 클릭할 때 goHome 함수 호출 -->
+        <button class="home-button" onclick="App.goHome()">처음으로</button>
     </div>
 
     <script src="script.js"></script>
-    
+    <script>
+        // 페이지 로드 시 주문 번호 처리 함수 호출
+        window.onload = () => {
+            App.handleOrderComplete();
+        };
+    </script>
 </body>
 </html>
