@@ -32,7 +32,7 @@ body {
 
 /* 전체 컨테이너 스타일 */
 .container {
-    width: 90vw;
+    width: 80vw;
     max-width: 700px;
     text-align: center;
     border: 1px solid #ddd;

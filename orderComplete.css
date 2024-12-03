@@ -54,7 +54,7 @@ body {
 }
 
 .message h2 {
-    font-size: 28px;
+    font-size: 40px; /* 글자 크기 2배 */
     color: black;
     margin-bottom: 30px;
 }
@@ -69,7 +69,7 @@ body {
 
 .line {
     width: 4px;
-    height: 60px;
+    height: 120px; /* 선의 높이를 2배로 늘림 */
     background-color: #FF4500;
     margin: 0 55px;
 }
@@ -79,19 +79,20 @@ body {
 }
 
 .order-text p {
-    margin: 10px 0;
+    margin: 20px 0; /* 여백을 조금 더 늘림 */
+    font-size: 38px;
 }
 
 .order-text .number {
-    font-size: 24px;
+    font-size: 48px; /* 번호 글자 크기 2배 */
     color: #FF4500;
     font-weight: bold;
 }
 
 .home-button {
     width: 150px;
-    padding: 10px;
-    font-size: 16px;
+    padding: 20px; /* 버튼 크기 키움 */
+    font-size: 27px; /* 버튼 글자 크기 2배 */
     background-color: #FF4500;
     color: white;
     border: none;
