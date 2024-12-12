@@ -1,0 +1,318 @@
+* {
+    cursor: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    overflow: auto;
+}
+
+.kiosk-container {
+    width: 90vw;
+    max-width: 950px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 3vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2vh;
+}
+
+.back-button {
+    background-color: #FF6347;
+    color: white;
+    border: 4px solid #FF6347;
+    border-radius: 20px;
+    padding: 15px 30px;  /* 크기 키움 */
+    font-size: 27px;      /* 글씨 크기 키움 */
+    font-weight: bold;
+}
+
+
+.header h2 {
+    flex-grow: 1;
+    background-color: #d3d3d3;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu-layout {
+    display: flex;
+    width: 100%;
+    margin-bottom: 3vh;
+}
+
+.left-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-right: 100px; /* margin-right 값을 줄여서 왼쪽으로 이동 */
+    margin-top: 3vh;
+    justify-content: space-evenly;
+}
+
+.icon-circle {
+    width: 200px;
+    height: 200px;
+    background-color: #FFB6B6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    border: 4px solid #F4A3A3;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    gap: 25px;
+    justify-items: center;
+    margin-top: 3vh;
+}
+
+.grid-item {
+    background-color: #ffffff;
+    border: 4px solid #FF6347;
+    height: 250px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.menu-name {
+    margin-top: 10px;
+    font-size: 23px;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.menu-price {
+    font-size: 21px;
+    color: #FF6347;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+
+.order-section {
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 3vh;
+    scrollbar-width: none;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 4px solid #FF6347;
+}
+
+.order-table th {
+    background-color: #FFB6B6;
+    padding: 10px;
+    text-align: center;
+    border: 4px solid #FF6347;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.order-table td {
+    padding: 10px;
+    text-align: center;
+    border: 4px solid #FF6347;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.quantity-button {
+    background-color: #FF6347;
+    color: white;
+    border: 4px solid #FF6347;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-button {
+    background-color: #FF6347;
+    color: white;
+    border: 4px solid #FF6347;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.order-button {
+    background-color: #FF7043;
+    color: white;
+    border: 6px solid #FF7043;
+    padding: 20px 50px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 2vh;
+    border-radius: 5px;
+}
+
+.voice-button, .speech-button {
+    background-color: #B77A51;
+    color: white;
+    border: 6px solid #B77A51;
+    padding: 20px 50px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 2vh;
+    border-radius: 5px;
+}
+
+.voice-buttons-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 3vh;
+}
+
+.voice-buttons-container .voice-button,
+.voice-buttons-container .speech-button,
+.voice-buttons-container .order-button {
+    width: 250px;
+    height: 70px;
+    font-size: 26px;
+    padding: 15px 30px;
+}
+
+#order-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup-cart-body {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 80%;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-popup h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.order-popup .order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-popup button {
+    margin-top: 20px;
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.quantity-button {
+    background-color: #FF6347;
+    color: white;
+    border: 4px solid #FF6347;
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* 모바일 화면 (화면 너비 480px 이하) */
+@media (max-width: 480px) {
+    .container {
+        height: auto; /* 세로 크기를 자동으로 조정 */
+        padding: 10px;
+    }
+
+    .buttons {
+        flex-direction: column; /* 버튼을 세로로 배치 */
+        height: auto; /* 세로 크기를 자동으로 조정 */
+    }
+
+    .button {
+        margin-bottom: 10px; /* 버튼 간 간격 추가 */
+        font-size: 18px; /* 버튼 텍스트 크기 줄이기 */
+    }
+
+    .footer {
+        font-size: 14px; /* 하단 텍스트 크기 조정 */
+    }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레스토랑 키오스크</title>
+    <link rel="stylesheet" href="dineInDetail.css">
+    <link rel="stylesheet" href="orderList.css">
+</head>
+<body>
+    <div class="kiosk-container">
+        <header class="header">
+            <button id="homeButton" class="back-button" onclick="App.goBack()">뒤로가기</button>
+        </header>
+        
+        <section class="menu-section">
+            <div class="menu-layout">
+                <div class="left-icons">
+                    <button class="icon-circle" onclick="App.changeMenu('coffee')">커피</button>
+                    <button class="icon-circle" onclick="App.changeMenu('juice')">주스/에이드</button>
+                    <button class="icon-circle" onclick="App.changeMenu('smoothie')">스무디/프라페</button>
+                </div>
+        
+                <div class="menu-grid" id="menuGrid">
+                    <div class="grid-item">
+                        <img src="coffee.jpg" alt="커피">
+                        <div class="menu-name">커피</div>
+                        <div class="menu-price">4,500원</div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="juice.jpg" alt="주스">
+                        <div class="menu-name">주스</div>
+                        <div class="menu-price">5,000원</div>
+                    </div>
+                    <!-- 추가 메뉴 항목을 여기에 넣으면 됩니다 -->
+                </div>
+            </div>
+        </section>
+
+        <section class="order-section">
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>상품명</th>
+                        <th>가격</th>
+                        <th>수량</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body"></tbody>
+            </table>
+        </section>
+
+        <div class="footer-buttons">
+            <!-- 음성 안내 버튼 -->
+            <button class="footer-button voice-button" id="voiceButton">
+                음성안내
+            </button>
+        
+            <!-- 음성 인식 버튼 -->
+            <button class="footer-button voice-button" id="voiceRecognitionButton">
+                음성인식
+            </button>
+        
+            <!-- 주문 버튼 -->
+            <button class="footer-button order-button" id="orderButton">주문</button>
+        </div>        
+
+        <!-- 주문 팝업 -->
+        <div id="order-popup" style="display:none;">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2>주문 리스트</h2>
+                </div>
+        
+                <table class="popup-order-table">
+                    <thead>
+                        <tr>
+                            <th>상품명</th>
+                            <th>가격</th>
+                            <th>수량</th>
+                        </tr>
+                    </thead>
+                    <tbody id="popup-cart-body"></tbody>
+                </table>
+        
+                <div class="total">
+                    <span class="total-label">총 주문 금액</span>
+                    <div id="total-price" class="total-price">0</div>
+                </div>
+        
+                <div class="popup-footer">
+                    <button class="order-footer-button" onclick="App.closeOrderPopup()">취소</button>
+                    <button class="order-footer-button" onclick="App.processPayment()">결제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 파일 추가 -->
+    <script src="voice.js"></script> <!-- voice.js 추가 -->
+    <script src="script.js"></script> <!-- 기존 script.js 추가 -->
+</body>
+</html>

@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'font';
+    src: url('../CapstoneDesign_LuckyVicky/font/KoddiUDOnGothic-Regular.woff') format('woff');
+}
+
+* {
+    cursor: none;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+} 
+
+body {
+    font-family: 'font';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #efefef;
+}
+
+.container {
+    width: 90vw;
+    max-width: 700px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.top-border {
+    width: 100%;
+    height: 5px;
+    background-color: #ff0000;
+}
+
+.message {
+    margin-top: 40px;  /* 상단 마진을 줄임 */
+    text-align: center;
+}
+
+.message h2 {
+    font-size: 40px; /* 글자 크기 2배 */
+    color: black;
+    margin-bottom: 30px;
+}
+
+.order-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0;  /* 상하 마진을 줄임 */
+    width: 100%;
+}
+
+.line {
+    width: 4px;
+    height: 120px; /* 선의 높이를 2배로 늘림 */
+    background-color: #FF4500;
+    margin: 0 55px;
+}
+
+.order-text {
+    text-align: center;
+}
+
+.order-text p {
+    margin: 20px 0; /* 여백을 조금 더 늘림 */
+    font-size: 38px;
+}
+
+.order-text .number {
+    font-size: 48px; /* 번호 글자 크기 2배 */
+    color: #FF4500;
+    font-weight: bold;
+}
+
+.home-button {
+    width: 150px;
+    padding: 20px; /* 버튼 크기 키움 */
+    font-size: 27px; /* 버튼 글자 크기 2배 */
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+
+/* 모바일 화면 (화면 너비 480px 이하) */
+@media (max-width: 480px) {
+    .container {
+        height: auto; /* 세로 크기를 자동으로 조정 */
+        padding: 10px;
+    }
+
+    .order-number {
+        flex-direction: column; /* 번호와 선을 세로로 배치 */
+        margin: 30px 0; /* 상하 마진을 줄임 */
+    }
+
+    .line {
+        margin: 20px 0; /* 선의 위치 조정 */
+    }
+
+    .order-text .number {
+        font-size: 20px; /* 번호 글자 크기 줄이기 */
+    }
+
+    .home-button {
+        width: 100%;
+        font-size: 14px; /* 버튼 텍스트 크기 줄이기 */
+    }
+
+    .message h2 {
+        font-size: 22px; /* 제목 글자 크기 줄이기 */
+    }
+}
