@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    flex-direction: column;
+    /* 세로 방향으로 정렬 */
+    align-items: center;
+    min-height: 90vh;
+    /* 세로 길이 조금 줄임 */
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    /* 세로 방향으로 정렬 */
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    position: relative;
+}
+
+/* 처음 페이지로 가기 버튼 */
+#backButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#backButton:hover {
+    background-color: #8d8d8d;
+}
+
+#deleteButton {
+    align-self: flex-end;
+    /* 오른쪽 정렬 */
+    margin-bottom: 20px;
+    /* 아래 여백 */
+    background-color: #ff0000;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#deleteButton:hover {
+    background-color: #8a0000;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}

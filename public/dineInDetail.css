@@ -51,11 +51,10 @@ body, html {
     color: white;
     border: 4px solid #FF6347;
     border-radius: 20px;
-    padding: 15px 30px;  /* 크기 키움 */
-    font-size: 27px;      /* 글씨 크기 키움 */
+    padding: 15px 30px;
+    font-size: 27px;
     font-weight: bold;
 }
-
 
 .header h2 {
     flex-grow: 1;
@@ -76,7 +75,7 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-right: 100px; /* margin-right 값을 줄여서 왼쪽으로 이동 */
+    margin-right: 100px;
     margin-top: 3vh;
     justify-content: space-evenly;
 }
@@ -143,8 +142,6 @@ body, html {
     text-align: center;
     margin-top: 5px;
 }
-
-
 
 .order-section {
     width: 100%;
@@ -295,24 +292,104 @@ body, html {
     border-radius: 5px;
 }
 
-/* 모바일 화면 (화면 너비 480px 이하) */
+/* 반응형 미디어 쿼리 */
+
+@media (max-width: 1200px) {
+    .kiosk-container {
+        width: 90vw;
+        padding: 4vw;
+    }
+
+    .header h2 {
+        font-size: 18px;
+    }
+
+    .grid-item {
+        height: 220px;
+        width: 180px;
+    }
+
+    .menu-name {
+        font-size: 20px;
+    }
+
+    .menu-price {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .kiosk-container {
+        width: 85vw;
+        padding: 5vw;
+    }
+
+    .header h2 {
+        font-size: 16px;
+    }
+
+    .grid-item {
+        height: 200px;
+        width: 160px;
+    }
+
+    .menu-name {
+        font-size: 18px;
+    }
+
+    .menu-price {
+        font-size: 16px;
+    }
+
+    .voice-buttons-container .voice-button,
+    .voice-buttons-container .speech-button,
+    .voice-buttons-container .order-button {
+        width: 200px;
+        height: 60px;
+    }
+}
+
 @media (max-width: 480px) {
-    .container {
-        height: auto; /* 세로 크기를 자동으로 조정 */
-        padding: 10px;
+    .kiosk-container {
+        width: 90vw;
+        padding: 8vw;
     }
 
-    .buttons {
-        flex-direction: column; /* 버튼을 세로로 배치 */
-        height: auto; /* 세로 크기를 자동으로 조정 */
+    .header h2 {
+        font-size: 14px;
     }
 
-    .button {
-        margin-bottom: 10px; /* 버튼 간 간격 추가 */
-        font-size: 18px; /* 버튼 텍스트 크기 줄이기 */
+    .grid-item {
+        height: 180px;
+        width: 140px;
     }
 
-    .footer {
-        font-size: 14px; /* 하단 텍스트 크기 조정 */
+    .menu-name {
+        font-size: 16px;
+    }
+
+    .menu-price {
+        font-size: 14px;
+    }
+
+    .quantity-button {
+        font-size: 16px;
+    }
+
+    .footer-button {
+        font-size: 18px;
+    }
+
+    .order-button {
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .voice-buttons-container .voice-button,
+    .voice-buttons-container .speech-button {
+        width: 180px;
+        height: 50px;
+        font-size: 20px;
     }
 }
