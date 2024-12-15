@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 기존 voice.js 내용
 const Voice = {
     // 음성 안내 기능
-    voiceGuide: function() {
+    voiceGuide: function () {
         const message = "원하시는 메뉴를 선택해주세요. 음성 인식 버튼을 눌러 주문하실 수 있습니다.";
         const utterance = new SpeechSynthesisUtterance(message);
         utterance.lang = 'ko-KR'; // 한국어 설정
@@ -23,7 +23,7 @@ const Voice = {
     },
 
     // 음성 인식 기능
-    voiceRecognition: function() {
+    voiceRecognition: function () {
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'ko-KR'; // 한국어 설정
 
@@ -59,7 +59,7 @@ const Voice = {
     },
 
     // 음성 인식된 텍스트에서 메뉴 아이템을 찾아 장바구니에 추가
-    addToCartFromSpeech: function(transcript, menuType) {
+    addToCartFromSpeech: function (transcript, menuType) {
         // 각 카테고리의 메뉴 아이템 배열
         const menu = App.menuItems[menuType];
 
@@ -67,8 +67,10 @@ const Voice = {
         const item = menu.find(menuItem => transcript.includes(menuItem.name));
 
         if (item) {
+            App.addToCart(item.name, item.price, item);  // 장바구니에 추가하는 함수 호출
             console.log(`${item.name}을 장바구니에 추가합니다.`);
-            App.addToCart(item.name, item.price);  // 장바구니에 추가하는 함수 호출
+            // 팝업에서도 항목 업데이트
+            App.updatePopupPrices();  // 추가
         } else {
             alert("해당 메뉴 항목을 찾을 수 없습니다.");
         }

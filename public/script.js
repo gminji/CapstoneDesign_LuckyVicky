@@ -144,6 +144,7 @@ const App = {
 
             this.cart.push({ id: menuItem.id, name: itemName, price: itemPrice, quantity: 1 });
         }
+        this.updatePopupPrices();
     },
 
     // 수량을 업데이트하는 함수
