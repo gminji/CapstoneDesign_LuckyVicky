@@ -1,0 +1,167 @@
+/* 전체 기본 스타일 */
+* {
+    cursor: none; /* 커서 숨김 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 커스텀 커서 */
+.cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 0, 0.7);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000; /* 최상단 노출 */
+}
+
+/* 팝업 전체 레이아웃 */
+#order-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.45); /* 반투명 검정 배경 */
+    backdrop-filter: blur(4px); /* 배경 흐림 효과 */
+    z-index: 1000; /* 커서보단 아래 */
+}
+
+/* 팝업 내용 박스 */
+.popup-content {
+    background: linear-gradient(to bottom right, #fffefc, #fff2e6);
+    padding: 36px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    border: 3px solid #ffc7a0;
+    animation: fadeInPopup 0.3s ease-in-out; /* 부드러운 등장 애니메이션 */
+}
+
+/* 팝업 헤더 */
+.popup-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* 주문 리스트 제목 */
+#order-popup h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #5c3a1e; /* 갈색 계열 */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 주문 테이블 스타일 */
+.popup-order-table {
+    width: 100%;
+    margin-top: 24px;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.popup-order-table th,
+.popup-order-table td {
+    padding: 14px;
+    font-size: 1.2rem;
+    border: 1px solid #ffc4a3;
+    text-align: center;
+}
+
+.popup-order-table th {
+    background-color: #ffd7b3; /* 연한 오렌지톤 */
+    color: #5c2c14;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.popup-order-table td {
+    background-color: #fffaf7;
+    color: #444;
+}
+
+/* 총 금액 영역 */
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.total-label {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #5c3a1e;
+}
+
+.total-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d64f30; /* 붉은 오렌지 */
+}
+
+/* 팝업 하단 버튼 영역 */
+.popup-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+/* 버튼 공통 스타일 */
+.order-footer-button {
+    flex: 1;
+    padding: 16px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+/* 취소 버튼 */
+.order-footer-button:first-child {
+    background-color: #a76e3d;
+    color: white;
+}
+.order-footer-button:first-child:hover {
+    background-color: #925e34;
+}
+
+/* 결제 버튼 */
+.order-footer-button:nth-child(2) {
+    background-color: #ff7043;
+    color: white;
+}
+.order-footer-button:nth-child(2):hover {
+    background-color: #ff5733;
+}
+
+/* 팝업 등장 애니메이션 */
+@keyframes fadeInPopup {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
